@@ -38,7 +38,7 @@ const Standings = () => {
       <ul>
         {standings.map((team, index) => (
           <li key={index} className='mb-2'>
-            {index + 1}. {team.name} - {team.points} pts
+            {index + 1}. {team.name} - {team.points} pts - {team.matches} matches {team.lost} lost {team.won} won {team.drawn} drawn
           </li>
         ))}
       </ul>
