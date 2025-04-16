@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from './Components/Header'
 import Home from './Components/Home'
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+// import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Table from './Components/Table';
 import Footer from './Components/Footer';

@@ -6,7 +6,18 @@
 .bg-img2{
   background-image: url(https://img.uefa.com/imgml/uefacom/ucl/2024/backgroundDark01L.jpg);
   width: 100%;
-  height: 700px;
+  /* height: 700px; */
   background-repeat: no-repeat;
   background-size: cover;
+}
+.toggle{
+  display: none;
+}
+@media  screen and (max-width: 600px) {
+  .toggle{
+    display: block;
+  }
+  .nav-linkk{
+    display: none;
+  }
 }

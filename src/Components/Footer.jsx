@@ -10,7 +10,7 @@ const Footer = () => {
       </div>
       <div className='flex flex-col gap-3 items-center justify-center mt-8'>
         <div>Official Global Partner</div>
-        <div className="flex items-center gap-2 justify-center">
+        <div className="flex items-center flex-wrap gap-2 justify-center">
             <img src="https://img.uefa.com/imgml/uefacom/sponsors/club/01-01A_RGB_Heineken.png?imwidth=75" alt="" />
             <img src="https://img.uefa.com/imgml/uefacom/sponsors/club/25_playstation.png?imwidth=75" alt="" />
             <img src="https://img.uefa.com/imgml/uefacom/sponsors/club/RGB_Lays.png?imwidth=75" alt="" />

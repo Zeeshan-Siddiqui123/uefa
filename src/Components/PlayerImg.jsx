@@ -1,11 +1,10 @@
-
-import React from 'react'
-// import { Carousel } from 'react-responsive-carousel'
-
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 
 const PlayerImg = () => {
     const Data = [
-        {
+           {
             img: "https://uefa.cdn.usestoryteller.com/assets/studio-templates/0a275dcc-d357-4f4b-9abc-3a19373f62ed/b16e0034-b773-7134-3df1-3a19373f62ed/70d448ce-187d-0490-9305-3a1937456501/IconRenderOutput.webp",
             heading: "MD13 Unpacked 📈"
         },
@@ -53,27 +52,42 @@ const PlayerImg = () => {
             img: "https://uefa.cdn.usestoryteller.com/assets/studio-templates/97fadf46-5b25-6d2e-526a-3a19213e6b85/853b8fe8-36dd-437c-aa90-f175ca85c6a3/b2584eb2-94ba-1b09-2496-3a192142e6fa/IconRenderOutput.webp",
             heading: "Off Pitch 📺"
         },
-       
         
+    ];
 
-    ]
     return (
-        <div className='flex items-center justify-center gap-5  '>
+        <div className="w-full px-4">
+            <div className="hidden lg:flex items-center justify-center gap-7 flex-wrap">
+                {Data.map((data, index) => (
+                    <div key={index} className='w-[100px] h-[100px] rounded-full border-2 border-[#0ef] mt-3 flex flex-col items-center'>
+                        <img className='rounded-full w-full h-full object-cover' src={data.img} alt="" />
+                        <p className='text-white text-center text-sm mt-1'>{data.heading}</p>
+                    </div>
+                ))}
+            </div>
 
-            {Data.map((data, index) => (
-                <div key={index} className='w-[100px] h-[100px] rounded-full border-2 border-[#0ef] mt-3 '>
-                    <img className='rounded-full' src={data.img} alt="" />
-                    <p className='text-white text-center text-sm'>{data.heading}</p>
-                </div>
-
-
-
-            ))}
-
-
+            {/* Slider for smaller screens */}
+            <div className="lg:hidden mt-3">
+                <Swiper
+                    spaceBetween={10}
+                    slidesPerView={5}
+                    breakpoints={{
+                        0: { slidesPerView: 2 },
+                        640: { slidesPerView: 5 },
+                    }}
+                >
+                    {Data.map((data, index) => (
+                        <SwiperSlide key={index}>
+                            <div className='w-[80px] h-[80px] rounded-full border-2 border-[#0ef] mx-auto'>
+                                <img className='rounded-full w-full h-full object-cover' src={data.img} alt="" />
+                            </div>
+                            <p className='text-white text-center text-sm mt-1'>{data.heading}</p>
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+            </div>
         </div>
-    )
-}
+    );
+};
 
-
-export default PlayerImg
+export default PlayerImg;

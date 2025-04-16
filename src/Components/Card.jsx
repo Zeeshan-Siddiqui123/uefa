@@ -1,30 +1,38 @@
 import React from 'react'
 
-const Card = (props) => {
 
-    const { date, leg, name1, name2, img1, img2 } = props
+// Your Card component (unchanged)
+const Card = (props) => {
+    const { date, leg, name1, name2, img1, img2 } = props;
     return (
-        <div>
-            <div className='w-[150px] h-[100px] bg-blue-950 rounded-2xl flex flex-col gap-1'>
-                <p className='text-gray-500 ml-2 '>{date}</p>
-                <p className='text-gray-500 ml-2 -mt-2'>{leg}</p>
-                <div className='flex flex-row ml-2'>
-                    <img src={img1} alt="" />
-                    <p className='text-white ml-1'>{name1}</p>
-                </div>
-                <div className='flex flex-row ml-2 mt-1'>
-                    <img src={img2} alt="" />
-                    <p className='text-white ml-1'>{name2}</p>
-                </div>
+        <div className='w-[150px] h-[100px] bg-blue-950 rounded-2xl flex flex-col gap-1 p-2'>
+            <p className='text-gray-500 text-xs'>{date}</p>
+            <p className='text-gray-500 text-xs -mt-1'>{leg}</p>
+            <div className='flex items-center mt-1'>
+                <img src={img1} alt="" className='w-4 h-4 rounded-full' />
+                <p className='text-white text-sm ml-2'>{name1}</p>
+            </div>
+            <div className='flex items-center mt-1'>
+                <img src={img2} alt="" className='w-4 h-4 rounded-full' />
+                <p className='text-white text-sm ml-2'>{name2}</p>
             </div>
         </div>
-    )
-}
+    );
+};
+
+// Just apply Swiper around multiple cards
+
 
 export default Card
 
 
 
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Pagination } from 'swiper/modules';
+import 'swiper/css/navigation';
 
 export const Card2 = () => {
     const data = [
@@ -56,22 +64,29 @@ export const Card2 = () => {
             img: "https://uefa.cdn.usestoryteller.com/assets/clips/2c1b8769-41d9-22fb-9e9c-3a1935df9788/638799525049540374_image_thumbnail_webp.webp",
             name: "Désiré Doué ⚽"
         },
-        
     ]
-    return (
-        <div className='flex flex-row gap-3'>
-            {data.map((Data, index) => (
-                <div key={index} className='w-[190px] h-[285px] bg-black rounded-2xl  '>
-                    <div className='bg-blue-400  p-1 ml-3 mt-2 absolute rounded-2xl'>NEW</div>
-                    <img src={Data.img} alt="" className='rounded-2xl' />
-                    <div className='absolute '>{Data.name}</div>
-                    
-                    
-                </div>
-            ))}
 
-        </div>
+    return (
+        <Swiper
+            modules={[Pagination]}
+            spaceBetween={10}
+            pagination={{ clickable: true }}
+            breakpoints={{
+                320: { slidesPerView: 1.2 },
+                480: { slidesPerView: 2 },
+                768: { slidesPerView: 3 },
+                1024: { slidesPerView: 4.2 },
+            }}
+        >
+            {data.map((item, index) => (
+                <SwiperSlide key={index}>
+                    <div className='relative w-[190px] h-[285px] bg-black rounded-2xl overflow-hidden'>
+                        <div className='bg-blue-400 p-1 absolute top-2 left-2 text-xs text-white rounded-2xl z-10'>NEW</div>
+                        <img src={item.img} alt={item.name} className='rounded-2xl w-full h-full object-cover' />
+                        <div className='absolute bottom-2 left-2 text-white font-semibold text-sm'>{item.name}</div>
+                    </div>
+                </SwiperSlide>
+            ))}
+        </Swiper>
     )
 }
-
-
